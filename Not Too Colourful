@@ -1,0 +1,96 @@
+//CONTEST : January Cook-Off 2020
+//PROBLEM : Not Too Colourful
+//PROBLEM CODE : NTCOL
+//PROBLEM LINK : https://www.codechef.com/problems/NTCOL
+
+//Shinchan Loves Coding :))
+#include<bits/stdc++.h>
+#include<map>
+#include<set>
+
+using namespace std;
+
+#define night_rider ios::sync_with_stdio(false);cin.tie(NULL);
+
+#define double long double
+#define int long long int
+#define en "\n"
+#define fi first
+#define se second
+#define PB push_back
+#define all(v) v.begin(),v.end()
+#define allr(v) v.rbegin(),v.rend()
+#define rep(i,x,y) for(int i=x ; i<y ; i++)
+#define erep(i,x,y) for(int i=x ; i<=y ; i++)
+#define erepr(i,x,y) for(int i=x ; i>=y ; i--)
+#define repr(i,x,y) for(int i=x ; i>y ; i--)
+typedef vector<int> vi;
+typedef vector<vector<int>> vii;
+typedef pair<int,int> pi;
+typedef vector<pair<int,int>> pii;
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+const int no=1e6+5,modulo=1e9+7,inf=1e18,N=3e3+1;
+int ar[no];//,br[no],cr[no];//,mat[N][N];
+//LOWER_BOUND(n) - FIRST ELEMENT GREATER THAN EQUAL TO n
+//UPPER_BOUND(n) - FIRST ELEMENT GREATER THAN n
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+char s[509][509];
+vector<pair<int,char>> v;
+
+void sol(int n , int m ) {
+    rep(i,0,n) rep(j,0,m) s[i][j]='A';
+    rep(i,0,n) {
+        rep(j,0,m) {
+            if(!v[0].fi) break;
+            if((i+j)%2==0) s[i][j]=v[0].se ,v[0].fi--;
+        }
+        if(!v[0].fi) break;
+    }
+    rep(i,0,n) {
+        rep(j,0,m) {
+            if(!v[1].fi) break;
+            if((i+j)%2) s[i][j]=v[1].se ,v[1].fi--;
+        }
+        if(!v[1].fi) break;
+    }
+    rep(i,0,n) {
+        rep(j,0,m) {
+            if(!v[2].fi) break;
+            if(s[i][j]!=v[0].se && s[i][j]!=v[1].se) v[2].fi-- , s[i][j]=v[2].se;
+        }
+        if(!v[2].fi) break;
+    }
+}
+
+void solve () {
+    int n=0,m=0,a=0,b=0,x=0,y=0,z=0,w=0,k=0;
+    cin>>n>>m;
+    cin>>a;v.PB({a,'R'});
+    cin>>a;v.PB({a,'G'});
+    cin>>a;v.PB({a,'B'});
+    sort(all(v));
+    sol(n,m);
+    v.clear();
+    rep(i,0,n) {rep(j,0,m) cout<<s[i][j]; cout<<en;}
+}
+
+inline void runn(){
+	#ifndef ONLINE JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	#endif
+}
+
+signed main()
+{
+	night_rider
+	//runn();
+	int t=1;
+	cin>>t;
+	rep(i,1,t+1) {
+        // cout << "Case #" << i << ": ";
+        solve();
+    }
+}
