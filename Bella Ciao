@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	   int D,d,P,Q;
+	   cin>>D>>d>>P>>Q;
+       int x=D/d;
+       int y=D%d;
+       ll f=d*(x*P+(x-1)*Q);
+       ll extra=y*(P+(x*Q));
+       ll ans=extra+f;
+	  cout<<ans<<"\n";
+	}
+	return 0;
+}
